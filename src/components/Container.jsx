@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import { memo, useCallback, useState } from 'react';
+import { memo, useCallback, useState, useEffect } from 'react';
 import { NativeTypes } from 'react-dnd-html5-backend';
 import Box from './Box'
 import Dustbin from './Dustbin'
@@ -10,6 +10,8 @@ const Container = memo(function Container() {
         {accepts: "item", lastDroppedItem: null, id:"2"},
         {accepts: "item", lastDroppedItem: null, id:"3"},
     ])
+
+    const reponse = ["1", "2", "3"];
 
     const [boxes] = useState([
         {name: '1', type: "item", id:"1"},
@@ -45,14 +47,38 @@ const Container = memo(function Container() {
         [droppedBoxNames, dustbins]
     )
 
+    // useEffect(() => {
+    //     const allBoxesDropped = dustbins.every((dustbin, index) => {
+    //         return dustbin.lastDroppedItem?.name;
+    //     });
+    
+    //     const userReponse = dustbins.lastDroppedItem?.name.join("");
+    //     const laReponse = reponse.join("");
+
+    //     if (allBoxesDropped) {
+    //         setWinMessage("Bravo !");
+    //     }
+    //     {dustbins.map((choix, index) => {
+    //         return choix.lastDroppedItem?.name;
+    //     })}
+
+    //     console.log(laReponse, userReponse)
+    // }, [dustbins]);
+    // // console.log(dustbins);
+
     useEffect(() => {
-        const allBoxesDropped = dustbins.every((dustbin, index) => {
-            console.log(dustbin.lastDroppedItem?.name, index + 1);
-            return dustbin.lastDroppedItem?.name === `${index + 1}`;
-        });
+        const allBoxesDropped = dustbins.every((dustbin) => dustbin.lastDroppedItem !== null);
     
         if (allBoxesDropped) {
-            setWinMessage("Bravo !");
+            // Récupérer l'ordre des éléments déposés
+            const userResponseOrder = dustbins.map((dustbin) => dustbin.lastDroppedItem.name);
+            
+            // Comparer l'ordre des éléments déposés avec la réponse attendue
+            const isCorrectOrder = userResponseOrder.join("") === reponse.join("");
+    
+            if (isCorrectOrder) {
+                setWinMessage("Bravo !");
+            }
         }
     }, [dustbins]);
 
