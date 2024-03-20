@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 import Draggable from "react-draggable";
 import dataElements from "../data/elements.json";
+import test from '/src/assets/img/HORLOGE_0405.svg'
 import { GrLogout } from "react-icons/gr";
 import {
   windowsXp,
@@ -165,24 +166,27 @@ const Home = () => {
                   type="radio"
                   id="choix1"
                   name="choix"
-                  value={selectedElement.choix1}
+                  value={selectedElement.valeur1}
                 />
-                <label htmlFor="choix1">choix1
-                <img src={windowsXp} alt="" /> </label>
+                <label htmlFor="choix1">
+                  <img src={"/src/assets/img/" + selectedElement.choix1} alt="" className="w-24 h-24" />
+                </label>
                 <input
                   type="radio"
                   id="choix2"
                   name="choix"
-                  value={selectedElement.choix2}
+                  value={selectedElement.valeur2}
                 />
-                <label htmlFor="choix2">choix2 </label>
+                <label htmlFor="choix2">                
+                <img src={"/src/assets/img/" + selectedElement.choix2} alt="" className="w-24 h-24" /></label>
                 <input
                   type="radio"
                   id="choix3"
                   name="choix"
-                  value={selectedElement.choix3}
+                  value={selectedElement.valeur3}
                 />
-                <label htmlFor="choix3">choix3 </label>
+                <label htmlFor="choix3">                
+                <img src={"/src/assets/img/" + selectedElement.choix3} alt="" className="w-24 h-24" /></label>
               </div>
               <button onClick={handleVerification}>Verifier</button>
             </div>
@@ -232,7 +236,7 @@ const Home = () => {
               className="max-w-6 absolute right-0 cursor-pointer"
             />
             <div className="w-[60vw] bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded">
-              <video src={video01} autoplay controls></video>
+              <video src={video01} autoPlay controls></video>
             </div>
           </div>
         </div>
