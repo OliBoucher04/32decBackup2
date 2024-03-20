@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 93.39 37.14">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #3a2b21;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-miterlimit: 10;
+        stroke-width: 5px;
+      }
+
+      .cls-1, .cls-3 {
+        stroke: #99813b;
+      }
+
+      .cls-2 {
+        stroke: #e5ded2;
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+      }
+
+      .cls-4 {
+        fill: #1b2526;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <g id="Calque_2-2" data-name="Calque 2">
+    <rect class="cls-4" y="3.51" width="93.39" height="29.64"/>
+    <g>
+      <ellipse class="cls-1" cx="46.69" cy="18.57" rx="23.61" ry="16.07"/>
+      <line class="cls-2" x1="29.32" y1="29.56" x2="58.13" y2="5.46"/>
+      <line class="cls-2" x1="23.08" y1="23.55" x2="47.93" y2="2.02"/>
+      <line class="cls-2" x1="38.99" y1="33.26" x2="64.95" y2="10.89"/>
+      <line class="cls-2" x1="51.44" y1="34.12" x2="70.3" y2="17.87"/>
+      <ellipse class="cls-3" cx="46.69" cy="18.57" rx="23.61" ry="16.07"/>
+    </g>
+  </g>
+</svg>
