@@ -208,7 +208,7 @@ const Home = () => {
               className="max-w-6 absolute right-0 cursor-pointer"
             />
             <div className="size-64 bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded">
-              <p>{selectedElement.video}</p>
+              <video src={selectedElement.video} autoPlay></video>
             </div>
           </div>
         </div>

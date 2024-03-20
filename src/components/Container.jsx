@@ -70,10 +70,9 @@ const Container = memo(function Container() {
         const allBoxesDropped = dustbins.every((dustbin) => dustbin.lastDroppedItem !== null);
     
         if (allBoxesDropped) {
-            // Récupérer l'ordre des éléments déposés
+
             const userResponseOrder = dustbins.map((dustbin) => dustbin.lastDroppedItem.name);
-            
-            // Comparer l'ordre des éléments déposés avec la réponse attendue
+
             const isCorrectOrder = userResponseOrder.join("") === reponse.join("");
     
             if (isCorrectOrder) {
