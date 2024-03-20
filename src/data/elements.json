@@ -11,6 +11,7 @@
       "choix2": "HORLOGE_1125.svg",
       "choix3": "HORLOGE_1159.svg",
       "photo": "photo1",
+      "photoSM": "photo5",
       "unlocked": false,
       "cadenas": false
     },
@@ -26,6 +27,7 @@
       "choix2": "MENACE_Cochon.svg",
       "choix3": "MENACE_Vache.svg",
       "photo": "photo2",
+      "photoSM": "photo5",
       "unlocked": false,
       "cadenas": true
     },
@@ -41,6 +43,7 @@
       "choix2": "CODE4592_mauvais1.svg",
       "choix3": "CODE4592_mauvais2.svg",
       "photo": "photo3",
+      "photoSM": "photo5",
       "unlocked": false,
       "cadenas": true
     },
@@ -56,6 +59,7 @@
       "choix2": "MESSAGE_favoris.svg",
       "choix3": "MESSAGE_poubelle.svg",
       "photo": "photo4",
+      "photoSM": "photo5",
       "unlocked": false,
       "cadenas": true
     },
@@ -71,6 +75,7 @@
       "choix2": "VESTON_logoB.svg",
       "choix3": "VESTON_logoC.svg",
       "photo": "photo5",
+      "photoSM": "photo5",
       "unlocked": false,
       "cadenas": true
     },
@@ -86,6 +91,7 @@
       "choix2": "choix2",
       "choix3": "choix3",
       "photo": "photo6",
+      "photoSM": "photo5",
       "unlocked": false,
       "cadenas": true
     }
