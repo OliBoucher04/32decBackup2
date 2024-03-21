@@ -10,13 +10,13 @@
       "choix1": "HORLOGE_0405.svg",
       "choix2": "HORLOGE_1125.svg",
       "choix3": "HORLOGE_1159.svg",
+      "shift": null,
       "photo": "Menaces.png",
       "photoSM": "photo_menaces.png",
       "name": "1",
       "type": "item",
       "unlocked": false,
-      "cadenas": false,
-      "visible": false
+      "cadenas": false
     },
     {
       "id": 2,
@@ -29,13 +29,13 @@
       "choix1": "MENACE_Canard.svg",
       "choix2": "MENACE_Cochon.svg",
       "choix3": "MENACE_Vache.svg",
+      "shift": null,
       "photo": "Poubelles.png",
       "photoSM": "photo_poubelle.png",
       "name": "2",
       "type": "item",
       "unlocked": false,
-      "cadenas": true,
-      "visible": false
+      "cadenas": true
     },
     {
       "id": 3,
@@ -48,13 +48,13 @@
       "choix1": "CODE4592_Bon.svg",
       "choix2": "CODE4592_mauvais1.svg",
       "choix3": "CODE4592_mauvais2.svg",
+      "shift": "Corbeille.png",
       "photo": "Corbeille.png",
       "photoSM": "photo_corbeille.png",
       "name": "3",
       "type": "item",
       "unlocked": false,
-      "cadenas": true,
-      "visible": false
+      "cadenas": true
     },
     {
       "id": 4,
@@ -67,13 +67,13 @@
       "choix1": "MESSAGE_envoyer.svg",
       "choix2": "MESSAGE_favoris.svg",
       "choix3": "MESSAGE_poubelle.svg",
+      "shift": null,
       "photo": "Veston.png",
       "photoSM": "photo_veston.png",
       "name": "4",
       "type": "item",
       "unlocked": false,
-      "cadenas": true,
-      "visible": false
+      "cadenas": true
     },
     {
       "id": 5,
@@ -86,32 +86,32 @@
       "choix1": "VESTON_logoA.svg",
       "choix2": "VESTON_logoB.svg",
       "choix3": "VESTON_logoC.svg",
-      "photo": "",
-      "photoSM": "",
+      "shift": null,
+      "photo": "rencontrerquelquun.png",
+      "photoSM": "photo_rencontre.png",
       "name": "5",
       "type": "item",
       "unlocked": false,
-      "cadenas": true,
-      "visible": false
+      "cadenas": true
     },
     {
       "id": 6,
-      "video": "video6",
+      "video": "videos/07_RetourPresent.mp4",
       "code": "623466",
-      "reponse": "choix1",
+      "reponse": "choix3",
       "valeur1": "choix1",
       "valeur2": "choix2",
       "valeur3": "choix3",
-      "choix1": "choix1",
-      "choix2": "choix2",
-      "choix3": "choix3",
-      "photo": "photo6",
-      "photoSM": "photo5",
+      "choix1": "CHANDAIL_orange.svg",
+      "choix2": "CHANDAIL_vert.svg",
+      "choix3": "CHANDAIL_bleu.svg",
+      "shift": null,
+      "photo": "photo_retour.png",
+      "photoSM": "photo_present.png",
       "name": "6",
       "type": "item",
       "unlocked": false,
-      "cadenas": true,
-      "visible": false
+      "cadenas": true
     }
   ]
   
