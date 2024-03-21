@@ -156,7 +156,7 @@ const Home = memo(function Home() {
 
         {/*Éléments*/}
         <div className="w-full h-full p-10">
-          {folders.map((element, name, type, index) => (
+          {folders.map((element, index) => (
             <div className="flex">
               <Draggable
                 key={index}
@@ -216,7 +216,7 @@ const Home = memo(function Home() {
           name={element.name}
           type={element.type}
           isDropped={isDropped(element.name)}
-          src={element}
+          src={element.photoSM}
         />
       </div>
     )}
@@ -329,7 +329,7 @@ const Home = memo(function Home() {
                 className="max-w-6 absolute right-0 cursor-pointer"
               />
               <div className="w-96 bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded">
-                <video src={selectedElement.video} autoPlay></video>
+                <video src={selectedElement.video} autoPlay controls className='w-full'/>
               </div>
             </div>
           </div>
@@ -353,7 +353,7 @@ const Home = memo(function Home() {
                 className="max-w-6 absolute right-0 cursor-pointer"
               />
               <div className="w-96 bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded">
-                <p>{selectedElement.photoSM}</p>
+                <img src={"/src/assets/img/" + selectedElement.photoSM} alt="" />
               </div>
             </div>
           </div>

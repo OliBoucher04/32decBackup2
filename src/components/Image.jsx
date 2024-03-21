@@ -21,7 +21,7 @@ const Image = memo(function Image({ name, type, isDropped, src, ifVisible }) {
           className="text-xl bg-gray-200 p-4 rounded"
 
             >
-        {isDropped ? <img src={src} alt={name} /> : name}
+        <img src={"/src/assets/img/" + src} alt={name} />
       </div>
     )
     );  
