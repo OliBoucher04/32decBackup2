@@ -11,6 +11,7 @@ import {
   imgDossier,
   imgPage,
   imgPhoto,
+  imgCheck,
   testSVG,
   video01,
 } from "../assets";
@@ -180,7 +181,7 @@ const Home = () => {
       {/*POP-UP*/}
       {isOpen && selectedElement && (
         <div className="w-screen h-screen top-0 flex justify-center items-center absolute">
-          <div className="relative max-w-64">
+          <div className="relative max-w-full">
             <img
               src={imgPage}
               alt="iconPage"
@@ -194,8 +195,8 @@ const Home = () => {
               draggable="false"
               className="max-w-6 absolute right-0 cursor-pointer"
             />
-            <div className="size-64 bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded">
-              <div className="input-container mb-8 mt-12">
+            <div className="h-64 w-96 bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded">
+              <div className="input-container mb-8 mt-12 inline">
                 {/* <input
                   onChange={handleInputChange}
                   value={password}
@@ -209,12 +210,13 @@ const Home = () => {
                   id="choix1"
                   name="choix"
                   value={selectedElement.valeur1}
+                  className="inline mt-16 ml-5"
                 />
                 <label htmlFor="choix1">
                   <img
                     src={"/src/assets/img/" + selectedElement.choix1}
                     alt=""
-                    className="w-24 h-24"
+                    className="w-20 h-20 inline ml-2"
                   />
                 </label>
                 <input
@@ -222,12 +224,13 @@ const Home = () => {
                   id="choix2"
                   name="choix"
                   value={selectedElement.valeur2}
+                  className="inline ml-4"
                 />
                 <label htmlFor="choix2">
                   <img
                     src={"/src/assets/img/" + selectedElement.choix2}
                     alt=""
-                    className="w-24 h-24"
+                    className="w-20 h-20 inline ml-2"
                   />
                 </label>
                 <input
@@ -235,16 +238,19 @@ const Home = () => {
                   id="choix3"
                   name="choix"
                   value={selectedElement.valeur3}
+                  className="inline ml-4"
                 />
                 <label htmlFor="choix3">
                   <img
                     src={"/src/assets/img/" + selectedElement.choix3}
                     alt=""
-                    className="w-24 h-24"
+                    className="w-20 h-20 inline ml-2"
                   />
                 </label>
               </div>
-              <button onClick={handleVerification}>Verifier</button>
+              <button onClick={handleVerification} className="block m-auto mt-6">
+                <img src={imgCheck} alt="Vérifier" className="w-24 px-4"/>
+              </button>
             </div>
           </div>
         </div>
