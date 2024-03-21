@@ -358,7 +358,7 @@ const Home = memo(function Home() {
                 className="max-w-6 absolute right-0 cursor-pointer"
               />
               <div className="w-96 bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded">
-                <img src={"/src/assets/img/" + selectedElement.photoSM} alt="" />
+                <img src={"img/" + selectedElement.photoSM} alt="" />
               </div>
             </div>
           </div>
