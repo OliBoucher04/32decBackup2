@@ -27,8 +27,8 @@
       "choix1": "MENACE_Canard.svg",
       "choix2": "MENACE_Cochon.svg",
       "choix3": "MENACE_Vache.svg",
-      "photo": "photo2",
-      "photoSM": "photo2",
+      "photo": "Menaces.png",
+      "photoSM": "photo_menaces.png",
       "unlocked": false,
       "cadenas": true,
       "visible": false
@@ -44,8 +44,8 @@
       "choix1": "CODE4592_Bon.svg",
       "choix2": "CODE4592_mauvais1.svg",
       "choix3": "CODE4592_mauvais2.svg",
-      "photo": "photo3",
-      "photoSM": "photo3",
+      "photo": "Poubelles.png",
+      "photoSM": "photo_poubelle.png",
       "unlocked": false,
       "cadenas": true,
       "visible": false
@@ -78,8 +78,8 @@
       "choix1": "VESTON_logoA.svg",
       "choix2": "VESTON_logoB.svg",
       "choix3": "VESTON_logoC.svg",
-      "photo": "photo5",
-      "photoSM": "photo5",
+      "photo": "Veston.png",
+      "photoSM": "photo_veston.png",
       "unlocked": false,
       "cadenas": true,
       "visible": false
