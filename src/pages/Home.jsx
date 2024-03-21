@@ -1,6 +1,6 @@
 import update from 'immutability-helper';
 import React, { memo, useCallback, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Draggable from "react-draggable";
 import dataElements from "../data/elements.json";
 import { GrLogout } from "react-icons/gr";
@@ -19,8 +19,10 @@ import {
   imgPage,
   imgPhoto,
   imgCheck,
-  testSVG,
   video01,
+  thumbnailContext,
+  calendar01,
+  calendar31
 } from "../assets";
 
 const Home = memo(function Home() {
@@ -39,9 +41,11 @@ const Home = memo(function Home() {
     { accepts: "item", lastDroppedItem: null, id: "6" },
   ]);
   const [droppedBoxNames, setDroppedBoxNames] = useState([]);
+  const [droppedBoxImg, setDroppedBoxImg] = useState([]);
   const [winMessage, setWinMessage] = useState(null);
-  const reponse = ["1", "2", "3", "4", "5", "6"];
-
+  const reponse = ["2", "4", "3", "1", "5", "6"];
+  const navigate = useNavigate();
+  console.log(selectedElement?.unlocked);
 
   const handleVerification = () => {
     const selectedAnswer = document.querySelector(
@@ -53,12 +57,12 @@ const Home = memo(function Home() {
         if (element.id === selectedElement.id) {
           const newSelectedElement = { ...element, unlocked: true };
           setSelectedElement(newSelectedElement);
+          console.log(newSelectedElement);
           return newSelectedElement;
         }
         return element;
       });
       handleCadenas(selectedElement.id, updatedFolders);
-      console.log(selectedElement.id, updatedFolders)
       setIsOpen(false);
       setIsOpenVideo(true);
     }
@@ -78,13 +82,23 @@ const Home = memo(function Home() {
   const handleCadenas = (elementId, newFolders) => {
     const index = elementId - 1;
     const nextIndex = index + 1;
+
     if (nextIndex < folders.length) {
       const updatedFolders = [...newFolders];
       const newValue = { ...updatedFolders[nextIndex], cadenas: false };
       updatedFolders[nextIndex] = newValue;
-      setFolders(updatedFolders)
+      setFolders(updatedFolders);
+    } else {
+      // Mettre à jour le champ 'unlocked' de l'élément correspondant
+      setFolders(prevFolders => {
+        const updatedFolders = [...prevFolders];
+        updatedFolders[index] = { ...updatedFolders[index], unlocked: true };
+        console.log(updatedFolders);
+        return updatedFolders;
+      });
     }
   };
+
 
   const isDropped = (boxName) => {
     return droppedBoxNames.indexOf(boxName) > 1;
@@ -92,21 +106,28 @@ const Home = memo(function Home() {
 
   const handleDrop = useCallback(
     (index, item) => {
-      const { name } = item;
+      const { name, photo } = item;
       setDroppedBoxNames(
         update(droppedBoxNames, name ? { $push: [name] } : { $push: [] })
       );
+      setDroppedBoxImg(
+        update(droppedBoxImg, photo ? { $push: [photo] } : { $push: [] })
+      )
       setEmplacements(
         update(emplacements, {
           [index]: {
             lastDroppedItem: {
-              $set: item,
+              $set: {
+                name,
+                photo,
+              },
             },
           },
         })
       );
+      console.log(item)
     },
-    [droppedBoxNames, emplacements]
+    [droppedBoxNames, droppedBoxImg, emplacements, selectedElement] // Assurez-vous d'ajouter selectedElement aux dépendances
   );
 
   useEffect(() => {
@@ -120,10 +141,14 @@ const Home = memo(function Home() {
       const correctOrder = userResponseOrder.join("") === reponse.join("");
 
       if (correctOrder) {
-        setWinMessage("Bravo! C'est résolu!");
+        setTimeout(() => {
+          navigate("/test");
+        }, 1000);
       }
     }
   }, [emplacements]);
+
+
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -138,25 +163,46 @@ const Home = memo(function Home() {
         {/*Logout*/}
         <Link
           to="/login"
-          className="flex justify-center items-center absolute bottom-10 right-10"
+          className="flex justify-center items-center absolute top-10 right-10"
         >
           <div className="bg-white w-24 h-24 bg-opacity-30 rounded-full"></div>
           <GrLogout className="p-10 text-9xl text-white cursor-pointer absolute -right-[20px] text-center" />
         </Link>
 
+        {/*TIMELINE*/}
+        <div className="fixed w-[80vw] m-10 h-[10vw] bottom-0 flex justify-center items-start">
+          <img
+            src={imgPage}
+            alt="iconPage"
+            draggable="false"
+            className="max-w-6 absolute left-1"
+          />
+          <img
+            src={imgX}
+            alt="iconX"
+            onClick={() => setIsOpen(false)}
+            draggable="false"
+            className="max-w-6 absolute right-0 cursor-pointer"
+          />
+          <div className='px-10 py-4 bottom-0 w-full flex justify-between items-center h-full  bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded'>
+            <div className='flex flex-col justify-center items-center'>
+              <img src={calendar31} alt="calendrier31" className='w-16' />
+              <p>23:59</p>
+            </div>
 
-        <div className='fixed p-10 bottom-0 w-full flex justify-between items-center h-[10vw] bg-black bg-opacity-30'>
-          <GiPartyPopper />
-
-          {emplacements.map(({ accepts, lastDroppedItem }, index) => (
-            <Emplacement
-              accepts={accepts}
-              lastDroppedItem={lastDroppedItem}
-              onDrop={(item) => handleDrop(index, item)}
-              key={index}
-            />
-          ))}
-          <CiCalendarDate />
+            {emplacements.map(({ accepts, lastDroppedItem, src }, index) => (
+              <Emplacement
+                accepts={accepts}
+                lastDroppedItem={lastDroppedItem}
+                onDrop={(item) => handleDrop(index, item)}
+                key={index}
+              />
+            ))}
+            <div className='flex flex-col justify-center items-center'>
+              <img src={calendar01} alt="calendrier01" className='w-16' />
+              <p>00:01</p>
+            </div>
+          </div>
         </div>
 
         {winMessage && <div>{winMessage}</div>}
@@ -164,7 +210,7 @@ const Home = memo(function Home() {
         {/*Éléments*/}
         <div className="w-full h-full p-10">
           {folders.map((element, index) => (
-            <div className="flex">
+            <div className="flex flex-row justify-start items-center">
               <Draggable
                 key={index}
                 axis="both"
@@ -207,11 +253,11 @@ const Home = memo(function Home() {
                   }}
                 >
                   <Image
-                    ifVisible={element.unlocked}
                     name={element.name}
                     type={element.type}
                     isDropped={isDropped(element.name)}
                     src={element.photoSM}
+                    photo={element.photo}
                   />
                 </div>
               )}
@@ -223,6 +269,7 @@ const Home = memo(function Home() {
 
         {/*FenêtreCode*/}
         {isOpen && selectedElement && (
+
           <div className="w-screen h-screen top-0 flex justify-center items-center absolute">
             <div className="relative max-w-full">
               <img
@@ -240,6 +287,7 @@ const Home = memo(function Home() {
               />
               <div className="h-64 w-96 bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded">
                 <div className="input-container mb-8 mt-12 inline">
+                  {selectedElement.shift ? (<img src={"img/" + selectedElement.shift} alt="" />) : null}
                   <input
                     type="radio"
                     id="choix1"
@@ -296,31 +344,33 @@ const Home = memo(function Home() {
 
         {/* FenêtreVidéo */}
         {selectedElement && selectedElement.unlocked && isOpenVideo && (
-          <div className="w-screen h-screen top-0 flex justify-center items-center absolute">
-            <div className="relative">
-              <img
-                src={imgPage}
-                alt="iconPage"
-                draggable="false"
-                className="max-w-6 absolute left-1"
-              />
-              <img
-                src={imgX}
-                alt="iconX"
-                onClick={() => setIsOpenVideo(false)}
-                draggable="false"
-                className="max-w-6 absolute right-0 cursor-pointer"
-              />
-              <div className="w-96 bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded">
-                <video src={selectedElement.video} autoPlay controls className='w-full' />
+          <div className="w-screen h-screen top-0 z-[10] flex justify-center items-center absolute">
+            <Draggable>
+              <div className="relative">
+                <img
+                  src={imgPage}
+                  alt="iconPage"
+                  draggable="false"
+                  className="max-w-6 absolute left-1"
+                />
+                <img
+                  src={imgX}
+                  alt="iconX"
+                  onClick={() => setIsOpenVideo(false)}
+                  draggable="false"
+                  className="max-w-6 absolute right-0 cursor-pointer"
+                />
+                <div className="w-[45vw] hover:cursor-grab bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded w-[45vw]">
+                  <video src={selectedElement.video} autoPlay controls className='w-full' />
+                </div>
               </div>
-            </div>
+            </Draggable>
           </div>
         )}
 
         {/* FenêtrePhoto */}
         {isOpenPhoto && (
-          <div className="w-screen h-screen top-0 flex justify-center items-center absolute">
+          <div className="w-screen bg-black bg-opacity-50 h-screen top-0 flex justify-center items-center absolute">
             <div className="relative">
               <img
                 src={imgPage}
@@ -335,15 +385,15 @@ const Home = memo(function Home() {
                 draggable="false"
                 className="max-w-6 absolute right-0 cursor-pointer"
               />
-              <div className="w-96 bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded">
-                <img src={"img/" + selectedElement.photoSM} alt="" />
+              <div className="bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded">
+                <img src={"img/" + selectedElement.photo} alt="" className='w-[40vw]' />
               </div>
             </div>
           </div>
         )}
 
         {/* ContexteVidéo */}
-        <img src={windowsXp} alt="" className='w-24' onDoubleClick={() => setOpenContext(true)} />
+        <img src={thumbnailContext} alt="" className='w-16 h-16 absolute right-72 top-80' onDoubleClick={() => setOpenContext(true)} />
         {openContext && (
           <div className="w-screen h-screen bg-black bg-opacity-50 top-0 flex justify-center items-center absolute">
             <div className="relative max-full">
