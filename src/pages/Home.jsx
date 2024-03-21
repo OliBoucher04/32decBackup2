@@ -62,10 +62,13 @@ const Home = memo(function Home() {
     }
   };
 
+
   const handleThumnail = (element) => {
     const updatedFolders = folders.map((item) => {
       if (item.id === element.id) {
-        return { ...item, visible: true };
+        const newObject = { ...item, visible: true };
+        setSelectedElement(newObject)
+        return newObject;
       }
       return item;
     });
@@ -74,11 +77,16 @@ const Home = memo(function Home() {
 
   const openPopup = (element) => {
     setSelectedElement(element);
-    setIsOpen(!element.unlocked);
-    setIsOpenVideo(element.unlocked);
+
     if (element.unlocked) {
+      setIsOpen(false);
       handleCadenas(element);
+
+    } else {
+      setIsOpen(true);
+      setIsOpenVideo(true);
     }
+    console.log(selectedElement.unlocked)
   };
 
   const openPhoto = (element) => {
@@ -91,8 +99,9 @@ const Home = memo(function Home() {
     const nextIndex = index + 1;
     if (nextIndex < folders.length) {
       const updatedFolders = [...folders];
-      updatedFolders[nextIndex].cadenas = false;
-      setFolders(updatedFolders);
+      const newValue = updatedFolders[nextIndex].cadenas = false;
+      setFolders(newValue)
+      return newValue;
     }
   };
 
@@ -123,7 +132,6 @@ const Home = memo(function Home() {
     const allImgDropped = emplacements.every(
       (emplacement) => emplacement.lastDroppedItem !== null
     );
-
     if (allImgDropped) {
       const userResponseOrder = emplacements.map(
         (emplacement) => emplacement.lastDroppedItem.name
@@ -138,6 +146,7 @@ const Home = memo(function Home() {
 
   return (
     <DndProvider backend={HTML5Backend}>
+
       <section className="w-screen overflow-hidden h-screen flex flex-row-reverse justify-between items-start relative">
         <img
           src={windowsXp}
