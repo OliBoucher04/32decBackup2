@@ -6,7 +6,8 @@ import {
 import Layout from "./components/Layout";
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Test from './pages/Test'
+import Test from './pages/Test';
+import Win from './pages/Win';
 
 const App = () => {
   const routes = [
@@ -29,6 +30,10 @@ const App = () => {
         {
           path: 'test',
           element: <Test/>
+        },
+        {
+          path: 'win',
+          element: <Win/>
         }
       ]
     },
