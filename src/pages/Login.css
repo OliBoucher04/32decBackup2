@@ -15,7 +15,7 @@
     height: 40px;
     padding: 10px;
     transition: .2s linear;
-    border: 2.5px solid #ff135a;
+    border: 2.5px solid #1e3a8a;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -23,8 +23,8 @@
   
   .input:focus {
     outline: none;
-    border: 0.5px solid #ff135a;
-    box-shadow: -5px -5px 0px #ff135a;
+    border: 0.5px solid #1e3a8a;
+    box-shadow: -5px -5px 0px #1e3a8a;
   }
   
   .input-container:hover > .icon {
@@ -46,14 +46,14 @@
   display: flex;
   justify-content: center;
   --color-text: #ffffff;
-  --color-background: #ff135a;
+  --color-background: #56c228;
 }
 
 .btn-container-disabled {
   display: flex;
   justify-content: center;
   --color-text: #ffffff;
-  --color-background:gray;
+  --color-background:rgb(73, 87, 104);
 }
 
 
