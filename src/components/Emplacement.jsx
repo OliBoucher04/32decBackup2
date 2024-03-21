@@ -25,7 +25,6 @@ const Emplacement = memo(function Emplacement({ accepts, lastDroppedItem, onDrop
             {lastDroppedItem && (
                 <>
                 <img src={"img/"+ lastDroppedItem.photo} alt="" className='object-cover w-[90%] h-[80%]'/>
-                <p>{lastDroppedItem.name}</p>
                 </>
             )}
         </div>

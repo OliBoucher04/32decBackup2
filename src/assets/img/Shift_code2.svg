@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 188.6 42.14">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #293232;
+        stroke-miterlimit: 10;
+        stroke-width: 3px;
+      }
+
+      .cls-2 {
+        fill: #e6eaf5;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <g id="Calque_2-2" data-name="Calque 2">
+    <g>
+      <rect class="cls-2" x="146.46" width="42.14" height="42.14" rx="5.77" ry="5.77"/>
+      <g>
+        <path class="cls-1" d="M171.98,9.79s-21.52,4.82-5,11c19.17,7.17-5.26,11.36-5.26,11.36"/>
+        <line class="cls-1" x1="167.53" y1="3.67" x2="167.53" y2="38.47"/>
+      </g>
+    </g>
+    <g>
+      <rect class="cls-2" x="97.64" width="42.14" height="42.14" rx="5.77" ry="5.77"/>
+      <g>
+        <line class="cls-1" x1="108.09" y1="31.79" x2="129.34" y2="11.29"/>
+        <circle class="cls-1" cx="112.48" cy="13.86" r="4.09"/>
+        <circle class="cls-1" cx="125.12" cy="28.18" r="4.2"/>
+      </g>
+    </g>
+    <g>
+      <rect class="cls-2" width="42.14" height="42.14" rx="5.77" ry="5.77"/>
+      <path class="cls-1" d="M26.51,6.4s-24.5,15.5,0,29.33"/>
+    </g>
+    <g>
+      <rect class="cls-2" x="48.82" width="42.14" height="42.14" rx="5.77" ry="5.77"/>
+      <g>
+        <ellipse class="cls-1" cx="69.42" cy="20.52" rx="3.42" ry="5.5"/>
+        <path class="cls-1" d="M72.26,22.93s4.97,6.86,7.3.21c2.5-7.12-2.12-16-10.14-14.62-6.74,1.16-10.03,3.79-9.87,13.62s9.3,15.12,18.26,9"/>
+      </g>
+    </g>
+  </g>
+</svg>

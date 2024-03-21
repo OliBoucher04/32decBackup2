@@ -22,7 +22,9 @@ import {
   video01,
   thumbnailContext,
   calendar01,
-  calendar31
+  calendar31,
+  Cloppie, 
+  CloppieBulle
 } from "../assets";
 
 const Home = memo(function Home() {
@@ -142,7 +144,7 @@ const Home = memo(function Home() {
 
       if (correctOrder) {
         setTimeout(() => {
-          navigate("/test");
+          navigate("/win");
         }, 1000);
       }
     }
@@ -159,6 +161,11 @@ const Home = memo(function Home() {
           alt="fondEcran"
           className="fixed -z-[50] h-screen object-cover w-screen"
         />
+
+        <div className='absolute bottom-6 left-10'>
+          <img src={CloppieBulle} alt="" className='relative w-32 right-6 '/>
+          <img src={Cloppie} alt="" className='w-24 -scale-x-[1]'/>
+        </div>
 
         {/*Logout*/}
         <Link
@@ -285,57 +292,67 @@ const Home = memo(function Home() {
                 draggable="false"
                 className="max-w-6 absolute right-0 cursor-pointer"
               />
-              <div className="h-64 w-96 bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded">
-                <div className="input-container mb-8 mt-12 inline">
-                  {selectedElement.shift ? (<img src={"img/" + selectedElement.shift} alt="" />) : null}
-                  <input
-                    type="radio"
-                    id="choix1"
-                    name="choix"
-                    value={selectedElement.valeur1}
-                    className="inline mt-16 ml-5"
-                  />
-                  <label htmlFor="choix1">
-                    <img
-                      src={"img/" + selectedElement.choix1}
-                      alt=""
-                      className="w-20 h-20 inline ml-2"
-                    />
-                  </label>
-                  <input
-                    type="radio"
-                    id="choix2"
-                    name="choix"
-                    value={selectedElement.valeur2}
-                    className="inline ml-4"
-                  />
-                  <label htmlFor="choix2">
-                    <img
-                      src={"img/" + selectedElement.choix2}
-                      alt=""
-                      className="w-20 h-20 inline ml-2"
-                    />
-                  </label>
-                  <input
-                    type="radio"
-                    id="choix3"
-                    name="choix"
-                    value={selectedElement.valeur3}
-                    className="inline ml-4"
-                  />
-                  <label htmlFor="choix3">
-                    <img
-                      src={"img/" + selectedElement.choix3}
-                      alt=""
-                      className="w-20 h-20 inline ml-2"
-                    />
-                  </label>
+              <div className="h-72 w-[30vw] bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded flex flex-col justify-center item-center w-full">
+                <div className="input-container  inline flex flex-col justify-around item-center w-full">
+                  <div className='flex flex-row justify-center item-center'>
+                    {selectedElement.shift ? (<img src={"img/" + selectedElement.shift} alt="" className='w-32 flex justify-center item-center mt-8 mb-6'/>) : null}
+                  </div>
+                  <div className='flex flex-row justify-around item-center'>
+                    <div className='flex gap-5'>
+                      <input
+                        type="radio"
+                        id="choix1"
+                        name="choix"
+                        value={selectedElement.valeur1}
+                        className="inline"
+                      />
+                      <label htmlFor="choix1">
+                        <img
+                          src={"img/" + selectedElement.choix1}
+                          alt=""
+                          className="w-20 h-full inline"
+                        />
+                      </label>
+                    </div>
+                    <div className='flex gap-5'>
+                      <input
+                        type="radio"
+                        id="choix2"
+                        name="choix"
+                        value={selectedElement.valeur2}
+                        className="inline ml-4"
+                      />
+                      <label htmlFor="choix2">
+                        <img
+                          src={"img/" + selectedElement.choix2}
+                          alt=""
+                          className="w-20 h-full inline"
+                        />
+                      </label>
+                    </div>
+                    <div className='flex gap-5'>
+                      <input
+                        type="radio"
+                        id="choix3"
+                        name="choix"
+                        value={selectedElement.valeur3}
+                        className="inline ml-4"
+                      />
+                      <label htmlFor="choix3">
+                        <img
+                          src={"img/" + selectedElement.choix3}
+                          alt=""
+                          className="w-20 h-full inline"
+                        />
+                      </label>
+                    </div>
+                  </div>
                 </div>
                 <button
                   onClick={handleVerification}
-                  className="block m-auto mt-6"
+                  className="mt-6 flex justify-center item-center"
                 >
-                  <img src={imgCheck} alt="Vérifier" className="w-24 px-4" />
+                  <img src={imgCheck} alt="Vérifier" className="w-20 px-4" />
                 </button>
               </div>
             </div>
