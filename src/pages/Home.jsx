@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import Draggable from "react-draggable";
 import dataElements from "../data/elements.json";
 import { GrLogout } from "react-icons/gr";
+import { CiCalendarDate } from "react-icons/ci";
+import { GiPartyPopper } from "react-icons/gi";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import Emplacement from "../components/Emplacement";
@@ -142,6 +144,23 @@ const Home = memo(function Home() {
           <GrLogout className="p-10 text-9xl text-white cursor-pointer absolute -right-[20px] text-center" />
         </Link>
 
+
+        <div className='fixed p-10 bottom-0 w-full flex justify-between items-center h-[10vw] bg-black bg-opacity-30'>
+          <GiPartyPopper />
+
+          {emplacements.map(({ accepts, lastDroppedItem }, index) => (
+            <Emplacement
+              accepts={accepts}
+              lastDroppedItem={lastDroppedItem}
+              onDrop={(item) => handleDrop(index, item)}
+              key={index}
+            />
+          ))}
+          <CiCalendarDate />
+        </div>
+
+        {winMessage && <div>{winMessage}</div>}
+
         {/*Éléments*/}
         <div className="w-full h-full p-10">
           {folders.map((element, index) => (
@@ -201,18 +220,6 @@ const Home = memo(function Home() {
           ))}
         </div>
 
-        <div>
-          {emplacements.map(({ accepts, lastDroppedItem }, index) => (
-            <Emplacement
-              accepts={accepts}
-              lastDroppedItem={lastDroppedItem}
-              onDrop={(item) => handleDrop(index, item)}
-              key={index}
-            />
-          ))}
-        </div>
-
-        {winMessage && <div>{winMessage}</div>}
 
         {/*FenêtreCode*/}
         {isOpen && selectedElement && (
