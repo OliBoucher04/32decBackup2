@@ -12,6 +12,8 @@
       "choix3": "HORLOGE_1159.svg",
       "photo": "photo1",
       "photoSM": "photo1",
+      "name": "1",
+      "type": "item",
       "unlocked": false,
       "cadenas": false,
       "visible": false
@@ -29,6 +31,8 @@
       "choix3": "MENACE_Vache.svg",
       "photo": "Menaces.png",
       "photoSM": "photo_menaces.png",
+      "name": "2",
+      "type": "item",
       "unlocked": false,
       "cadenas": true,
       "visible": false
@@ -46,6 +50,8 @@
       "choix3": "CODE4592_mauvais2.svg",
       "photo": "Poubelles.png",
       "photoSM": "photo_poubelle.png",
+      "name": "3",
+      "type": "item",
       "unlocked": false,
       "cadenas": true,
       "visible": false
@@ -63,6 +69,8 @@
       "choix3": "MESSAGE_poubelle.svg",
       "photo": "photo4",
       "photoSM": "photo4",
+      "name": "4",
+      "type": "item",
       "unlocked": false,
       "cadenas": true,
       "visible": false
@@ -80,6 +88,8 @@
       "choix3": "VESTON_logoC.svg",
       "photo": "Veston.png",
       "photoSM": "photo_veston.png",
+      "name": "5",
+      "type": "item",
       "unlocked": false,
       "cadenas": true,
       "visible": false
@@ -97,6 +107,8 @@
       "choix3": "choix3",
       "photo": "photo6",
       "photoSM": "photo5",
+      "name": "6",
+      "type": "item",
       "unlocked": false,
       "cadenas": true,
       "visible": false
