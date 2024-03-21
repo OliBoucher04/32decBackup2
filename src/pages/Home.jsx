@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import Draggable from "react-draggable";
 import dataElements from "../data/elements.json";
 import { GrLogout } from "react-icons/gr";
+import { CiCalendarDate } from "react-icons/ci";
+import { GiPartyPopper } from "react-icons/gi";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import Emplacement from "../components/Emplacement";
@@ -40,6 +42,7 @@ const Home = memo(function Home() {
   const [winMessage, setWinMessage] = useState(null);
   const reponse = ["1", "2", "3", "4", "5", "6"];
 
+
   const handleVerification = () => {
     const selectedAnswer = document.querySelector(
       'input[name="choix"]:checked'
@@ -54,31 +57,17 @@ const Home = memo(function Home() {
         }
         return element;
       });
-      setFolders(updatedFolders);
+      handleCadenas(selectedElement.id, updatedFolders);
+      console.log(selectedElement.id, updatedFolders)
       setIsOpen(false);
       setIsOpenVideo(true);
-      handleCadenas(selectedElement);
-      handleThumnail(selectedElement);
     }
-  };
-
-  const handleThumnail = (element) => {
-    const updatedFolders = folders.map((item) => {
-      if (item.id === element.id) {
-        return { ...item, visible: true };
-      }
-      return item;
-    });
-    setFolders(updatedFolders);
-  };
+  }
 
   const openPopup = (element) => {
     setSelectedElement(element);
     setIsOpen(!element.unlocked);
     setIsOpenVideo(element.unlocked);
-    if (element.unlocked) {
-      handleCadenas(element);
-    }
   };
 
   const openPhoto = (element) => {
@@ -86,13 +75,14 @@ const Home = memo(function Home() {
     setIsOpenPhoto(!isOpenPhoto);
   };
 
-  const handleCadenas = (element) => {
-    const index = element.id - 1;
+  const handleCadenas = (elementId, newFolders) => {
+    const index = elementId - 1;
     const nextIndex = index + 1;
     if (nextIndex < folders.length) {
-      const updatedFolders = [...folders];
-      updatedFolders[nextIndex].cadenas = false;
-      setFolders(updatedFolders);
+      const updatedFolders = [...newFolders];
+      const newValue = { ...updatedFolders[nextIndex], cadenas: false };
+      updatedFolders[nextIndex] = newValue;
+      setFolders(updatedFolders)
     }
   };
 
@@ -123,7 +113,6 @@ const Home = memo(function Home() {
     const allImgDropped = emplacements.every(
       (emplacement) => emplacement.lastDroppedItem !== null
     );
-
     if (allImgDropped) {
       const userResponseOrder = emplacements.map(
         (emplacement) => emplacement.lastDroppedItem.name
@@ -138,6 +127,7 @@ const Home = memo(function Home() {
 
   return (
     <DndProvider backend={HTML5Backend}>
+
       <section className="w-screen overflow-hidden h-screen flex flex-row-reverse justify-between items-start relative">
         <img
           src={windowsXp}
@@ -154,6 +144,23 @@ const Home = memo(function Home() {
           <GrLogout className="p-10 text-9xl text-white cursor-pointer absolute -right-[20px] text-center" />
         </Link>
 
+
+        <div className='fixed p-10 bottom-0 w-full flex justify-between items-center h-[10vw] bg-black bg-opacity-30'>
+          <GiPartyPopper />
+
+          {emplacements.map(({ accepts, lastDroppedItem }, index) => (
+            <Emplacement
+              accepts={accepts}
+              lastDroppedItem={lastDroppedItem}
+              onDrop={(item) => handleDrop(index, item)}
+              key={index}
+            />
+          ))}
+          <CiCalendarDate />
+        </div>
+
+        {winMessage && <div>{winMessage}</div>}
+
         {/*Éléments*/}
         <div className="w-full h-full p-10">
           {folders.map((element, index) => (
@@ -169,9 +176,8 @@ const Home = memo(function Home() {
               >
                 <div className="max-w-16 h-16 flex m-2">
                   <div
-                    className={`handle ${
-                      element.cadenas ? "cursor-not-allowed" : "cursor-pointer"
-                    }`}
+                    className={`handle ${element.cadenas ? "cursor-not-allowed" : "cursor-pointer"
+                      }`}
                   >
                     <img
                       onDoubleClick={() =>
@@ -192,51 +198,28 @@ const Home = memo(function Home() {
                   </div>
                 </div>
               </Draggable>
-              {/* {element.visible && (
+              {element.unlocked && (
                 <div
-                  className="text-xl cursor-pointer w-24 h-full"
+                  className="cursor-pointer"
                   onDoubleClick={() => {
                     openPhoto(element);
                     setSelectedElement(element);
                   }}
                 >
-                  <p>{element.photoSM}</p>
+                  <Image
+                    ifVisible={element.unlocked}
+                    name={element.name}
+                    type={element.type}
+                    isDropped={isDropped(element.name)}
+                    src={element.photoSM}
+                  />
                 </div>
-              )} */}
-    {element.visible && (
-      <div
-        className="cursor-pointer"
-        onDoubleClick={() => {
-          openPhoto(element);
-          setSelectedElement(element);
-        }}
-      >
-        <Image
-          ifVisible={element.visible}
-          name={element.name}
-          type={element.type}
-          isDropped={isDropped(element.name)}
-          src={element.photoSM}
-        />
-      </div>
-    )}
+              )}
 
             </div>
           ))}
         </div>
 
-        <div>
-          {emplacements.map(({ accepts, lastDroppedItem }, index) => (
-            <Emplacement
-              accepts={accepts}
-              lastDroppedItem={lastDroppedItem}
-              onDrop={(item) => handleDrop(index, item)}
-              key={index}
-            />
-          ))}
-        </div>
-
-        {winMessage && <div>{winMessage}</div>}
 
         {/*FenêtreCode*/}
         {isOpen && selectedElement && (
@@ -266,7 +249,7 @@ const Home = memo(function Home() {
                   />
                   <label htmlFor="choix1">
                     <img
-                      src={"/src/assets/img/" + selectedElement.choix1}
+                      src={"img/" + selectedElement.choix1}
                       alt=""
                       className="w-20 h-20 inline ml-2"
                     />
@@ -280,7 +263,7 @@ const Home = memo(function Home() {
                   />
                   <label htmlFor="choix2">
                     <img
-                      src={"/src/assets/img/" + selectedElement.choix2}
+                      src={"img/" + selectedElement.choix2}
                       alt=""
                       className="w-20 h-20 inline ml-2"
                     />
@@ -294,7 +277,7 @@ const Home = memo(function Home() {
                   />
                   <label htmlFor="choix3">
                     <img
-                      src={"/src/assets/img/" + selectedElement.choix3}
+                      src={"img/" + selectedElement.choix3}
                       alt=""
                       className="w-20 h-20 inline ml-2"
                     />
@@ -329,7 +312,7 @@ const Home = memo(function Home() {
                 className="max-w-6 absolute right-0 cursor-pointer"
               />
               <div className="w-96 bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded">
-                <video src={selectedElement.video} autoPlay controls className='w-full'/>
+                <video src={selectedElement.video} autoPlay controls className='w-full' />
               </div>
             </div>
           </div>
@@ -353,13 +336,14 @@ const Home = memo(function Home() {
                 className="max-w-6 absolute right-0 cursor-pointer"
               />
               <div className="w-96 bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded">
-                <img src={"/src/assets/img/" + selectedElement.photoSM} alt="" />
+                <img src={"img/" + selectedElement.photoSM} alt="" />
               </div>
             </div>
           </div>
         )}
 
         {/* ContexteVidéo */}
+        <img src={windowsXp} alt="" className='w-24' onDoubleClick={() => setOpenContext(true)} />
         {openContext && (
           <div className="w-screen h-screen bg-black bg-opacity-50 top-0 flex justify-center items-center absolute">
             <div className="relative max-full">
