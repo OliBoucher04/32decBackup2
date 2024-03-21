@@ -39,6 +39,8 @@ const Home = memo(function Home() {
   const [droppedBoxNames, setDroppedBoxNames] = useState([]);
   const [winMessage, setWinMessage] = useState(null);
   const reponse = ["1", "2", "3", "4", "5", "6"];
+  
+  // console.log(selectedElement?.unlocked);
 
   const handleVerification = () => {
     const selectedAnswer = document.querySelector(
@@ -54,39 +56,18 @@ const Home = memo(function Home() {
         }
         return element;
       });
-      setFolders(updatedFolders);
+      handleCadenas(selectedElement.id, updatedFolders);
+      console.log(selectedElement.id, updatedFolders)
+      // setFolders(updatedFolders);
       setIsOpen(false);
       setIsOpenVideo(true);
-      handleCadenas(selectedElement);
-      handleThumnail(selectedElement);
     }
-  };
-
-
-  const handleThumnail = (element) => {
-    const updatedFolders = folders.map((item) => {
-      if (item.id === element.id) {
-        const newObject = { ...item, visible: true };
-        setSelectedElement(newObject)
-        return newObject;
-      }
-      return item;
-    });
-    setFolders(updatedFolders);
-  };
+  }
 
   const openPopup = (element) => {
     setSelectedElement(element);
-
-    if (element.unlocked) {
-      setIsOpen(false);
-      handleCadenas(element);
-
-    } else {
-      setIsOpen(true);
-      setIsOpenVideo(true);
-    }
-    console.log(selectedElement.unlocked)
+    setIsOpen(!element.unlocked);
+    setIsOpenVideo(element.unlocked);
   };
 
   const openPhoto = (element) => {
@@ -94,16 +75,31 @@ const Home = memo(function Home() {
     setIsOpenPhoto(!isOpenPhoto);
   };
 
-  const handleCadenas = (element) => {
-    const index = element.id - 1;
+  const handleCadenas = (elementId, newFolders) => {
+    const index = elementId - 1;
     const nextIndex = index + 1;
     if (nextIndex < folders.length) {
-      const updatedFolders = [...folders];
-      const newValue = updatedFolders[nextIndex].cadenas = false;
-      setFolders(newValue)
-      return newValue;
+      const updatedFolders = [...newFolders];
+      const newValue = {...updatedFolders[nextIndex], cadenas : false};
+      updatedFolders[nextIndex] = newValue;
+      setFolders(updatedFolders)
+      // console.log("la nouvelle valeur du cadenas", newValue);
+      // return newValue;
     }
+    // return newValue;
   };
+
+//   useEffect(() => {
+//   if (!selectedElement) return; // Quittez tôt si selectedElement est null ou non défini
+
+//   const index = parseInt(selectedElement.id) - 1; // Assurez-vous de convertir l'ID en nombre
+//   const nextIndex = index + 1;
+//   if (nextIndex < folders.length) {
+//     const updatedFolders = [...folders];
+//     updatedFolders[nextIndex] = { ...updatedFolders[nextIndex], cadenas: false };
+//     setFolders(updatedFolders);
+//   }
+// }, [selectedElement, folders]);
 
   const isDropped = (boxName) => {
     return droppedBoxNames.indexOf(boxName) > 1;
@@ -212,7 +208,7 @@ const Home = memo(function Home() {
                   <p>{element.photoSM}</p>
                 </div>
               )} */}
-    {element.visible && (
+    {element.unlocked && (
       <div
         className="cursor-pointer"
         onDoubleClick={() => {
@@ -221,7 +217,7 @@ const Home = memo(function Home() {
         }}
       >
         <Image
-          ifVisible={element.visible}
+          ifVisible={element.unlocked}
           name={element.name}
           type={element.type}
           isDropped={isDropped(element.name)}
