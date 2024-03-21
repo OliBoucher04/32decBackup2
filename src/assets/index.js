@@ -41,6 +41,7 @@ export {
     imgDossier,
     imgPage,
     imgPhoto,
+    imgCheck,
     testSVG,
     video01,
 
