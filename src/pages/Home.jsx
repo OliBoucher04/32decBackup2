@@ -365,6 +365,7 @@ const Home = memo(function Home() {
         )}
 
         {/* ContexteVidéo */}
+        <img src={windowsXp} alt="" className='w-24' onDoubleClick={() => setOpenContext(true)}/>
         {openContext && (
           <div className="w-screen h-screen bg-black bg-opacity-50 top-0 flex justify-center items-center absolute">
             <div className="relative max-full">
