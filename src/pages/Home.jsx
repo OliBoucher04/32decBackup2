@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import Draggable from "react-draggable";
 import dataElements from "../data/elements.json";
-import test from '/src/assets/img/HORLOGE_0405.svg'
 import { GrLogout } from "react-icons/gr";
 import {
   windowsXp,
@@ -13,7 +12,7 @@ import {
   imgPage,
   imgPhoto,
   testSVG,
-  video01
+  video01,
 } from "../assets";
 
 const Home = () => {
@@ -23,6 +22,7 @@ const Home = () => {
   const [openContext, setOpenContext] = useState(true);
   const [folders, setFolders] = useState(dataElements);
   const [isOpenVideo, setIsOpenVideo] = useState(false);
+  const [isOpenPhoto, setIsOpenPhoto] = useState(false);
 
   // const handleInputChange = (e) => {
   //   setPassword(e.target.value);
@@ -64,7 +64,18 @@ const Home = () => {
       setIsOpen(false);
       setIsOpenVideo(true);
       handleCadenas(selectedElement);
+      handleThumnail(selectedElement);
     }
+  };
+
+  const handleThumnail = (element) => {
+    const updatedFolders = folders.map((item) => {
+      if (item.id === element.id) {
+        return { ...item, visible: true }; // Mettre à jour la propriété visible à true pour l'élément sélectionné
+      }
+      return item;
+    });
+    setFolders(updatedFolders);
   };
 
   const openPopup = (element) => {
@@ -74,6 +85,11 @@ const Home = () => {
     if (element.unlocked) {
       handleCadenas(element);
     }
+  };
+
+  const openPhoto = (element) => {
+    setSelectedElement(element);
+    setIsOpenPhoto(!isOpenPhoto);
   };
 
   const handleCadenas = (element) => {
@@ -86,7 +102,6 @@ const Home = () => {
     }
   };
 
-
   return (
     <section className="w-screen overflow-hidden h-screen flex flex-row-reverse justify-between items-start relative">
       <img
@@ -94,44 +109,71 @@ const Home = () => {
         alt="fondEcran"
         className="fixed -z-[50] h-screen object-cover w-screen"
       />
-      <Link to='/login' className="flex justify-center items-center absolute bottom-10 right-10">
+      <Link
+        to="/login"
+        className="flex justify-center items-center absolute bottom-10 right-10"
+      >
         <div className="bg-white w-24 h-24 bg-opacity-30 rounded-full"></div>
         <GrLogout className="p-10 text-9xl text-white cursor-pointer absolute -right-[20px] text-center" />
       </Link>
       {/*FOLDERS*/}
       <div className="w-full h-full p-10">
         {folders.map((element, index) => (
-          <Draggable
-            key={index}
-            axis="both"
-            handle=".handle"
-            defaultPosition={{ x: 0, y: 0 }}
-            position={null}
-            grid={[25, 25]}
-            scale={1}
-          >
-            <div className="max-w-16 h-16 flex m-2">
-              <div
-                className={`handle ${element.cadenas ? "cursor-not-allowed" : "cursor-pointer"
+          <div className="flex">
+            <Draggable
+              key={index}
+              axis="both"
+              handle=".handle"
+              defaultPosition={{ x: 0, y: 0 }}
+              position={null}
+              grid={[25, 25]}
+              scale={1}
+            >
+              <div className="max-w-16 h-16 flex m-2">
+                <div
+                  className={`handle ${
+                    element.cadenas ? "cursor-not-allowed" : "cursor-pointer"
                   }`}
-                onDoubleClick={() => !element.cadenas && openPopup(element)}
-              >
-                <img
-                  src={imgDossier}
-                  alt="dossier"
-                  draggable="false"
-                  className="text-6xl folder absolute top-0 left-0"
-                />
-                {element.cadenas && (
+                >
                   <img
-                    src={imgCadenas}
-                    alt="cadenas"
-                    className="z-[100] w-full h-full absolute top-0 left-0"
+                    onDoubleClick={() => !element.cadenas && openPopup(element)}
+                    src={imgDossier}
+                    alt="dossier"
+                    draggable="false"
+                    className="text-6xl folder"
                   />
-                )}
+                  {/* {element.visible && (
+                  <div>
+                    <p
+                      className="text-9xl"
+                      onDoubleClick={() => setIsOpenPhoto(true)}
+                    >
+                      {element.photoSM}
+                    </p>
+                  </div>
+                )} */}
+                  {element.cadenas && (
+                    <img
+                      src={imgCadenas}
+                      alt="cadenas"
+                      className="z-[100] w-full h-full absolute top-0 left-0"
+                    />
+                  )}
+                </div>
               </div>
-            </div>
-          </Draggable>
+            </Draggable>
+            {element.visible && (
+              <div
+                className="text-xl cursor-pointer w-24 h-full"
+                onDoubleClick={() => {
+                  openPhoto(element);
+                  setSelectedElement(element);
+                }}
+              >
+                <p>{element.photoSM}</p>
+              </div>
+            )}
+          </div>
         ))}
       </div>
 
@@ -169,7 +211,11 @@ const Home = () => {
                   value={selectedElement.valeur1}
                 />
                 <label htmlFor="choix1">
-                  <img src={"/src/assets/img/" + selectedElement.choix1} alt="" className="w-24 h-24" />
+                  <img
+                    src={"/src/assets/img/" + selectedElement.choix1}
+                    alt=""
+                    className="w-24 h-24"
+                  />
                 </label>
                 <input
                   type="radio"
@@ -177,16 +223,26 @@ const Home = () => {
                   name="choix"
                   value={selectedElement.valeur2}
                 />
-                <label htmlFor="choix2">                
-                <img src={"/src/assets/img/" + selectedElement.choix2} alt="" className="w-24 h-24" /></label>
+                <label htmlFor="choix2">
+                  <img
+                    src={"/src/assets/img/" + selectedElement.choix2}
+                    alt=""
+                    className="w-24 h-24"
+                  />
+                </label>
                 <input
                   type="radio"
                   id="choix3"
                   name="choix"
                   value={selectedElement.valeur3}
                 />
-                <label htmlFor="choix3">                
-                <img src={"/src/assets/img/" + selectedElement.choix3} alt="" className="w-24 h-24" /></label>
+                <label htmlFor="choix3">
+                  <img
+                    src={"/src/assets/img/" + selectedElement.choix3}
+                    alt=""
+                    className="w-24 h-24"
+                  />
+                </label>
               </div>
               <button onClick={handleVerification}>Verifier</button>
             </div>
@@ -194,10 +250,10 @@ const Home = () => {
         </div>
       )}
 
-      {/* Afficher la vidéo si le dossier est déverrouillé */}
+      {/* FenêtreVidéo */}
       {selectedElement && selectedElement.unlocked && isOpenVideo && (
         <div className="w-screen h-screen top-0 flex justify-center items-center absolute">
-          <div className="relative max-w-64">
+          <div className="relative">
             <img
               src={imgPage}
               alt="iconPage"
@@ -211,8 +267,32 @@ const Home = () => {
               draggable="false"
               className="max-w-6 absolute right-0 cursor-pointer"
             />
-            <div className="size-64 bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded">
+            <div className="w-96 bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded">
               <video src={selectedElement.video} autoPlay></video>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* FenêtrePhoto */}
+      {isOpenPhoto && (
+        <div className="w-screen h-screen top-0 flex justify-center items-center absolute">
+          <div className="relative">
+            <img
+              src={imgPage}
+              alt="iconPage"
+              draggable="false"
+              className="max-w-6 absolute left-1"
+            />
+            <img
+              src={imgX}
+              alt="iconX"
+              onClick={openPhoto}
+              draggable="false"
+              className="max-w-6 absolute right-0 cursor-pointer"
+            />
+            <div className="w-96 bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded">
+              <p>{selectedElement.photoSM}</p>
             </div>
           </div>
         </div>
