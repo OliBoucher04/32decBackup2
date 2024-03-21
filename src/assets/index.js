@@ -1,4 +1,6 @@
 import windowsXp from './img/windowsXP.jpg'
+import bgNotWindows from './img/fond_notWindows.png'
+import logoNotWindows from './img/logo_notWindows.png'
 import postitLogin from './img/postit.png'
 import imgVideo from './img/video.png'
 import imgX from './img/x.png'
@@ -34,6 +36,8 @@ import video01 from './videos/01_BonneAnnee.mp4'
 
 export {
     windowsXp,
+    bgNotWindows,
+    logoNotWindows,
     postitLogin,
     imgVideo,
     imgX,
