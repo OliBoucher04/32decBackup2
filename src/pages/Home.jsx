@@ -39,8 +39,7 @@ const Home = memo(function Home() {
   const [droppedBoxNames, setDroppedBoxNames] = useState([]);
   const [winMessage, setWinMessage] = useState(null);
   const reponse = ["1", "2", "3", "4", "5", "6"];
-  
-  // console.log(selectedElement?.unlocked);
+
 
   const handleVerification = () => {
     const selectedAnswer = document.querySelector(
@@ -58,7 +57,6 @@ const Home = memo(function Home() {
       });
       handleCadenas(selectedElement.id, updatedFolders);
       console.log(selectedElement.id, updatedFolders)
-      // setFolders(updatedFolders);
       setIsOpen(false);
       setIsOpenVideo(true);
     }
@@ -80,26 +78,11 @@ const Home = memo(function Home() {
     const nextIndex = index + 1;
     if (nextIndex < folders.length) {
       const updatedFolders = [...newFolders];
-      const newValue = {...updatedFolders[nextIndex], cadenas : false};
+      const newValue = { ...updatedFolders[nextIndex], cadenas: false };
       updatedFolders[nextIndex] = newValue;
       setFolders(updatedFolders)
-      // console.log("la nouvelle valeur du cadenas", newValue);
-      // return newValue;
     }
-    // return newValue;
   };
-
-//   useEffect(() => {
-//   if (!selectedElement) return; // Quittez tôt si selectedElement est null ou non défini
-
-//   const index = parseInt(selectedElement.id) - 1; // Assurez-vous de convertir l'ID en nombre
-//   const nextIndex = index + 1;
-//   if (nextIndex < folders.length) {
-//     const updatedFolders = [...folders];
-//     updatedFolders[nextIndex] = { ...updatedFolders[nextIndex], cadenas: false };
-//     setFolders(updatedFolders);
-//   }
-// }, [selectedElement, folders]);
 
   const isDropped = (boxName) => {
     return droppedBoxNames.indexOf(boxName) > 1;
@@ -174,9 +157,8 @@ const Home = memo(function Home() {
               >
                 <div className="max-w-16 h-16 flex m-2">
                   <div
-                    className={`handle ${
-                      element.cadenas ? "cursor-not-allowed" : "cursor-pointer"
-                    }`}
+                    className={`handle ${element.cadenas ? "cursor-not-allowed" : "cursor-pointer"
+                      }`}
                   >
                     <img
                       onDoubleClick={() =>
@@ -197,34 +179,23 @@ const Home = memo(function Home() {
                   </div>
                 </div>
               </Draggable>
-              {/* {element.visible && (
+              {element.unlocked && (
                 <div
-                  className="text-xl cursor-pointer w-24 h-full"
+                  className="cursor-pointer"
                   onDoubleClick={() => {
                     openPhoto(element);
                     setSelectedElement(element);
                   }}
                 >
-                  <p>{element.photoSM}</p>
+                  <Image
+                    ifVisible={element.unlocked}
+                    name={element.name}
+                    type={element.type}
+                    isDropped={isDropped(element.name)}
+                    src={element.photoSM}
+                  />
                 </div>
-              )} */}
-    {element.unlocked && (
-      <div
-        className="cursor-pointer"
-        onDoubleClick={() => {
-          openPhoto(element);
-          setSelectedElement(element);
-        }}
-      >
-        <Image
-          ifVisible={element.unlocked}
-          name={element.name}
-          type={element.type}
-          isDropped={isDropped(element.name)}
-          src={element.photoSM}
-        />
-      </div>
-    )}
+              )}
 
             </div>
           ))}
@@ -271,7 +242,7 @@ const Home = memo(function Home() {
                   />
                   <label htmlFor="choix1">
                     <img
-                      src={"/src/assets/img/" + selectedElement.choix1}
+                      src={"img/" + selectedElement.choix1}
                       alt=""
                       className="w-20 h-20 inline ml-2"
                     />
@@ -285,7 +256,7 @@ const Home = memo(function Home() {
                   />
                   <label htmlFor="choix2">
                     <img
-                      src={"/src/assets/img/" + selectedElement.choix2}
+                      src={"img/" + selectedElement.choix2}
                       alt=""
                       className="w-20 h-20 inline ml-2"
                     />
@@ -299,7 +270,7 @@ const Home = memo(function Home() {
                   />
                   <label htmlFor="choix3">
                     <img
-                      src={"/src/assets/img/" + selectedElement.choix3}
+                      src={"img/" + selectedElement.choix3}
                       alt=""
                       className="w-20 h-20 inline ml-2"
                     />
@@ -334,7 +305,7 @@ const Home = memo(function Home() {
                 className="max-w-6 absolute right-0 cursor-pointer"
               />
               <div className="w-96 bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded">
-                <video src={selectedElement.video} autoPlay controls className='w-full'/>
+                <video src={selectedElement.video} autoPlay controls className='w-full' />
               </div>
             </div>
           </div>
@@ -365,7 +336,7 @@ const Home = memo(function Home() {
         )}
 
         {/* ContexteVidéo */}
-        <img src={windowsXp} alt="" className='w-24' onDoubleClick={() => setOpenContext(true)}/>
+        <img src={windowsXp} alt="" className='w-24' onDoubleClick={() => setOpenContext(true)} />
         {openContext && (
           <div className="w-screen h-screen bg-black bg-opacity-50 top-0 flex justify-center items-center absolute">
             <div className="relative max-full">

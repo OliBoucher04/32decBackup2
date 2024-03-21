@@ -1,7 +1,7 @@
 [
     {
       "id": 1,
-      "video": "src/assets/videos/02_Menace.mp4",
+      "video": "videos/02_Menace.mp4",
       "code": "123456",
       "reponse": "choix3",
       "valeur1": "choix1",
@@ -20,7 +20,7 @@
     },
     {
       "id": 2,
-      "video": "src/assets/videos/03_NettoyerBordel.mp4",
+      "video": "videos/03_NettoyerBordel.mp4",
       "code": "223456",
       "reponse": "choix2",
       "valeur1": "choix1",
@@ -39,7 +39,7 @@
     },
     {
       "id": 3,
-      "video":  "src/assets/videos/04_MessageMechant.mp4",
+      "video":  "videos/04_MessageMechant.mp4",
       "code": "323456",
       "reponse": "choix1",
       "valeur1": "choix1",
@@ -58,7 +58,7 @@
     },
     {
       "id": 4,
-      "video": "src/assets/videos/05_Vetements.mp4",
+      "video": "videos/05_Vetements.mp4",
       "code": "423456",
       "reponse": "choix3",
       "valeur1": "choix1",
@@ -77,7 +77,7 @@
     },
     {
       "id": 5,
-      "video": "src/assets/videos/06_RencontrerQuelquun.mp4",
+      "video": "videos/06_RencontrerQuelquun.mp4",
       "code": "523456",
       "reponse": "choix1",
       "valeur1": "choix1",
