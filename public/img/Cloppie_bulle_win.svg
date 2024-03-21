@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 178.5 171.74">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #878787;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #f6f6f6;
+      }
+
+      .cls-1, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-3, .cls-4, .cls-5, .cls-7 {
+        stroke-width: 2px;
+      }
+
+      .cls-2, .cls-8, .cls-9, .cls-10 {
+        stroke-width: 0px;
+      }
+
+      .cls-8 {
+        fill: #293232;
+      }
+
+      .cls-3 {
+        fill: #dadada;
+        stroke: #706f6f;
+      }
+
+      .cls-9 {
+        fill: #86bce7;
+      }
+
+      .cls-4 {
+        stroke: #be5304;
+      }
+
+      .cls-4, .cls-10 {
+        fill: #fff;
+      }
+
+      .cls-5 {
+        fill: #ffdb2e;
+        stroke: #f39200;
+      }
+
+      .cls-6 {
+        fill: none;
+        stroke: #1b2526;
+        stroke-width: 3px;
+      }
+
+      .cls-7 {
+        fill: #fcf7cc;
+        stroke: #1d1d1b;
+      }
+    </style>
+  </defs>
+  <g id="Calque_2-2" data-name="Calque 2">
+    <path class="cls-7" d="M177.5,16.58v104.24c0,8.6-6.83,15.58-15.25,15.58h-24.25v30.05l-11.79-30.05H16.25c-8.42,0-15.25-6.98-15.25-15.58V16.58C1,7.98,7.83,1,16.25,1h146c8.42,0,15.25,6.98,15.25,15.58Z"/>
+    <g>
+      <circle class="cls-5" cx="107.05" cy="55.7" r="36"/>
+      <g>
+        <path class="cls-3" d="M75.28,85.92c-1.73,1.45-2.2,1.64-4.12.45l-18.75-20.57c-.98-.61-2.24.09-2.24,1.24l10.12,17.88-15.04-10.53c-1.55-1.26-3.89-.52-4.44,1.4l-2.11,7.37c-.32,1.11.08,2.29.99,2.99l13.6,9.39-18.62-2.62c-1.69,4.61,13.02,7.32,15.45,9.12l20.2,8.67,14.29-10.72,1.06-8.29-2.5-18.67c.52-1.56-2.58-1.74-3.84-.69l-4.03,13.58Z"/>
+        <rect class="cls-3" x="67.07" y="103.06" width="25.3" height="8.45" rx="3.92" ry="3.92" transform="translate(-50.52 77.21) rotate(-40.38)"/>
+      </g>
+      <g>
+        <path class="cls-1" d="M69.57,90.82c-1.33,1.83-1.74,2.13-3.89,1.44l-23.19-15.4c-1.09-.35-2.15.63-1.88,1.75l14.16,14.89-17.15-6.55c-1.81-.84-3.9.44-3.96,2.44l-.26,7.67c-.04,1.15.63,2.2,1.69,2.66l15.48,5.8-18.7,1.98c-.52,4.88,14.41,3.94,17.2,5.09l21.7,3.5,11.26-13.87-.98-8.3-6.96-17.5c.13-1.64-2.93-1.06-3.89.27l-.61,14.15Z"/>
+        <rect class="cls-1" x="66.42" y="106.24" width="25.3" height="8.45" rx="3.92" ry="3.92" transform="translate(-56.78 110.58) rotate(-54.45)"/>
+      </g>
+      <g>
+        <ellipse class="cls-2" cx="91.08" cy="48.95" rx="12.83" ry="11.67" transform="translate(26.21 129.46) rotate(-79.39)"/>
+        <ellipse class="cls-9" cx="89.89" cy="47.15" rx="9.88" ry="9.25" transform="translate(27 126.83) rotate(-79.39)"/>
+        <ellipse class="cls-8" cx="89.28" cy="45.47" rx="6.67" ry="5.17" transform="translate(28.15 124.85) rotate(-79.39)"/>
+        <circle class="cls-10" cx="88.18" cy="42.72" r="2.5"/>
+      </g>
+      <g>
+        <ellipse class="cls-2" cx="120.36" cy="51.29" rx="12.83" ry="11.67" transform="translate(47.79 160.16) rotate(-79.39)"/>
+        <ellipse class="cls-9" cx="119.17" cy="49.5" rx="9.88" ry="9.25" transform="translate(48.58 157.52) rotate(-79.39)"/>
+        <ellipse class="cls-8" cx="118.56" cy="47.82" rx="6.67" ry="5.17" transform="translate(49.73 155.54) rotate(-79.39)"/>
+        <circle class="cls-10" cx="117.46" cy="45.07" r="2.5"/>
+      </g>
+      <path class="cls-6" d="M84.4,34.5s6.18-10.64,14.87-1.93"/>
+      <path class="cls-6" d="M113.59,35.06s9.17-8.2,14.74,2.76"/>
+      <path class="cls-4" d="M89.28,67.07s9.88,30.88,29.88,2.75c0,0-15.88,6.38-29.88-2.75Z"/>
+    </g>
+  </g>
+</svg>

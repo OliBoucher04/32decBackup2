@@ -9,6 +9,10 @@ import imgCheck from './img/check.png'
 import imgDossier from './img/dossier.png'
 import imgPage from './img/page.png'
 import imgPhoto from './img/photo.png'
+import BlueWin from './img/blueScreenOfWin.png'
+import Cloppie from './img/Cloppie.svg'
+import CloppieBulle from './img/Cloppie_bulle.svg'
+import CloppieWin from './img/Cloppie_bulle_win.svg'
 
 import testSVG from './img/svgTest.svg'
 
@@ -48,6 +52,10 @@ export {
     imgCheck,
     testSVG,
     video01,
+    BlueWin,
+    Cloppie,
+    CloppieBulle,
+    CloppieWin,
 
     C1Heures1,
     C1Heures2,
