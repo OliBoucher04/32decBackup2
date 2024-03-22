@@ -13,6 +13,7 @@ import BlueWin from './img/blueScreenOfWin.png'
 import Cloppie from './img/Cloppie.svg'
 import CloppieBulle from './img/Cloppie_bulle.svg'
 import CloppieWin from './img/Cloppie_bulle_win.svg'
+import etoile from './img/MESSAGE_favoris.svg'
 
 import video01 from './videos/01_BonneAnnee.mp4'
 import thumbnailContext from './img/photo_bonneannee.png'
@@ -38,5 +39,6 @@ export {
     CloppieWin,
     thumbnailContext,
     calendar01,
-    calendar31
+    calendar31,
+    etoile
 }

@@ -68,7 +68,18 @@ const Home = memo(function Home() {
       handleCadenas(selectedElement.id, updatedFolders);
       setIsOpen(false);
       setIsOpenVideo(true);
-    }
+    } 
+    // else {
+    //     const currentIndex = folders.findIndex(element => element.id === selectedElement.id);
+    //     const prevIndex = currentIndex - 1;
+      
+    //     if (prevIndex >= 0) {
+    //       const prevElement = folders[prevIndex];
+    //       setSelectedElement(prevElement);
+    //       setIsOpenPhoto(!isOpenPhoto);
+    //       console.log(prevElement);
+    //     }
+    // }
   }
 
   const openPopup = (element) => {
@@ -92,7 +103,6 @@ const Home = memo(function Home() {
       updatedFolders[nextIndex] = newValue;
       setFolders(updatedFolders);
     } else {
-      // Mettre à jour le champ 'unlocked' de l'élément correspondant
       setFolders(prevFolders => {
         const updatedFolders = [...prevFolders];
         updatedFolders[index] = { ...updatedFolders[index], unlocked: true };
@@ -400,7 +410,7 @@ const Home = memo(function Home() {
 
         {/* FenêtrePhoto */}
         {isOpenPhoto && (
-          <div className="w-screen bg-black bg-opacity-50 h-screen top-0 flex justify-center items-center absolute">
+          <div className="w-screen bg-black bg-opacity-50 z-10 h-screen top-0 flex justify-center items-center absolute">
             <div className="relative">
               <img
                 src={imgPage}
