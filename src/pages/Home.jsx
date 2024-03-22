@@ -23,7 +23,7 @@ import {
   thumbnailContext,
   calendar01,
   calendar31,
-  Cloppie, 
+  Cloppie,
   CloppieBulle
 } from "../assets";
 
@@ -46,6 +46,7 @@ const Home = memo(function Home() {
   const [droppedBoxImg, setDroppedBoxImg] = useState([]);
   const [winMessage, setWinMessage] = useState(null);
   const reponse = ["2", "4", "3", "1", "5", "6"];
+  const [correctSequence, setCorrectSequence] = useState(null);
   const navigate = useNavigate();
   console.log(selectedElement?.unlocked);
 
@@ -129,8 +130,12 @@ const Home = memo(function Home() {
       );
       console.log(item)
     },
-    [droppedBoxNames, droppedBoxImg, emplacements, selectedElement] // Assurez-vous d'ajouter selectedElement aux dépendances
+    [droppedBoxNames, droppedBoxImg, emplacements, selectedElement]
   );
+
+  const resetEmplacements = () => {
+    setEmplacements(emplacements.map(empl => ({ ...empl, lastDroppedItem: null })));
+  };
 
   useEffect(() => {
     const allImgDropped = emplacements.every(
@@ -146,6 +151,12 @@ const Home = memo(function Home() {
         setTimeout(() => {
           navigate("/win");
         }, 1000);
+      } else {
+        setCorrectSequence(false);
+        setTimeout(() => {
+          resetEmplacements();
+          setDroppedBoxImg([]);
+        },1000)
       }
     }
   }, [emplacements]);
@@ -162,11 +173,6 @@ const Home = memo(function Home() {
           className="fixed -z-[50] h-screen object-cover w-screen"
         />
 
-        {/* <div className='absolute bottom-6 left-10'>
-          <img src={CloppieBulle} alt="" className='relative w-32 right-6 '/>
-          <img src={Cloppie} alt="" className='w-24 -scale-x-[1]'/>
-        </div> */}
-
         {/*Logout*/}
         <Link
           to="/login"
@@ -178,11 +184,11 @@ const Home = memo(function Home() {
 
         {/*TIMELINE*/}
         <div className="fixed w-[80vw] m-10 h-[10vw] bottom-0 flex justify-center items-start">
-        <div className='bottom-0 -left-36 absolute'>
-          <img src={CloppieBulle} alt="" className='relative w-32 right-6 '/>
-          <img src={Cloppie} alt="" className='w-24 -scale-x-[1]'/>
-        </div>
-          
+          <div className='bottom-0 -left-36 absolute'>
+            <img src={CloppieBulle} alt="" className='relative w-32 right-6 ' />
+            <img src={Cloppie} alt="" className='w-24 -scale-x-[1]' />
+          </div>
+
           <img
             src={imgPage}
             alt="iconPage"
@@ -196,8 +202,8 @@ const Home = memo(function Home() {
             draggable="false"
             className="max-w-6 absolute right-0 cursor-pointer"
           />
-          
-          <div className='px-10 py-4 bottom-0 w-full flex justify-between items-center h-full  bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded'>
+
+          <div className={`px-10 py-4 bottom-0 w-full flex justify-between items-center h-full  bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded ${correctSequence ? 'border-green-600' : 'border-red-600'}`}>
             <div className='flex flex-col justify-center items-center'>
               <img src={calendar31} alt="calendrier31" className='w-16' />
               <p>23:59</p>
@@ -259,7 +265,6 @@ const Home = memo(function Home() {
               </Draggable>
               {element.unlocked && (
                 <div
-                  className="cursor-pointer"
                   onDoubleClick={() => {
                     openPhoto(element);
                     setSelectedElement(element);
@@ -283,87 +288,87 @@ const Home = memo(function Home() {
         {/*FenêtreCode*/}
         {isOpen && selectedElement && (
 
-          <div className="w-screen h-screen top-0 flex justify-center items-center absolute">
-              <Draggable>
-            <div className="relative w-[30vw]">
-              <img
-                src={imgPage}
-                alt="iconPage"
-                draggable="false"
-                className="max-w-6 absolute left-1"
-              />
-              <img
-                src={imgX}
-                alt="iconX"
-                onClick={() => setIsOpen(false)}
-                draggable="false"
-                className="max-w-6 absolute right-0 cursor-pointer"
-              />
-              <div className="h-72 w-full bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded flex flex-col justify-center item-center w-full">
-                <div className="input-container  inline flex flex-col justify-around item-center w-full">
-                  <div className='flex flex-row justify-center item-center'>
-                    {selectedElement.shift ? (<img src={"img/" + selectedElement.shift} alt="" className='w-32 flex justify-center item-center mt-8 mb-10'/>) : null}
+          <div className="w-screen z-10 h-screen top-0 flex justify-center items-center absolute">
+            <Draggable>
+              <div className="relative w-[30vw]">
+                <img
+                  src={imgPage}
+                  alt="iconPage"
+                  draggable="false"
+                  className="max-w-6 absolute left-1"
+                />
+                <img
+                  src={imgX}
+                  alt="iconX"
+                  onClick={() => setIsOpen(false)}
+                  draggable="false"
+                  className="max-w-6 absolute right-0 cursor-pointer"
+                />
+                <div className="h-72 w-full bg-amber-50 border-4 border-t-[24px] border-blue-700 rounded flex flex-col justify-center item-center w-full">
+                  <div className="input-container  inline flex flex-col justify-around item-center w-full">
+                    <div className='flex flex-row justify-center item-center'>
+                      {selectedElement.shift ? (<img src={"img/" + selectedElement.shift} alt="" className='w-32 flex justify-center item-center mt-8 mb-10' />) : null}
+                    </div>
+                    <div className='flex flex-row justify-around item-center'>
+                      <div className='flex gap-5'>
+                        <input
+                          type="radio"
+                          id="choix1"
+                          name="choix"
+                          value={selectedElement.valeur1}
+                          className="inline"
+                        />
+                        <label htmlFor="choix1">
+                          <img
+                            src={"img/" + selectedElement.choix1}
+                            alt=""
+                            className="w-20 h-full inline"
+                          />
+                        </label>
+                      </div>
+                      <div className='flex gap-5'>
+                        <input
+                          type="radio"
+                          id="choix2"
+                          name="choix"
+                          value={selectedElement.valeur2}
+                          className="inline ml-4"
+                        />
+                        <label htmlFor="choix2">
+                          <img
+                            src={"img/" + selectedElement.choix2}
+                            alt=""
+                            className="w-20 h-full inline"
+                          />
+                        </label>
+                      </div>
+                      <div className='flex gap-5'>
+                        <input
+                          type="radio"
+                          id="choix3"
+                          name="choix"
+                          value={selectedElement.valeur3}
+                          className="inline ml-4"
+                        />
+                        <label htmlFor="choix3">
+                          <img
+                            src={"img/" + selectedElement.choix3}
+                            alt=""
+                            className="w-20 h-full inline"
+                          />
+                        </label>
+                      </div>
+                    </div>
                   </div>
-                  <div className='flex flex-row justify-around item-center'>
-                    <div className='flex gap-5'>
-                      <input
-                        type="radio"
-                        id="choix1"
-                        name="choix"
-                        value={selectedElement.valeur1}
-                        className="inline"
-                      />
-                      <label htmlFor="choix1">
-                        <img
-                          src={"img/" + selectedElement.choix1}
-                          alt=""
-                          className="w-20 h-full inline"
-                        />
-                      </label>
-                    </div>
-                    <div className='flex gap-5'>
-                      <input
-                        type="radio"
-                        id="choix2"
-                        name="choix"
-                        value={selectedElement.valeur2}
-                        className="inline ml-4"
-                      />
-                      <label htmlFor="choix2">
-                        <img
-                          src={"img/" + selectedElement.choix2}
-                          alt=""
-                          className="w-20 h-full inline"
-                        />
-                      </label>
-                    </div>
-                    <div className='flex gap-5'>
-                      <input
-                        type="radio"
-                        id="choix3"
-                        name="choix"
-                        value={selectedElement.valeur3}
-                        className="inline ml-4"
-                      />
-                      <label htmlFor="choix3">
-                        <img
-                          src={"img/" + selectedElement.choix3}
-                          alt=""
-                          className="w-20 h-full inline"
-                        />
-                      </label>
-                    </div>
-                  </div>
+                  <button
+                    onClick={handleVerification}
+                    className="mt-10 flex justify-center item-center"
+                  >
+                    <img src={imgCheck} alt="Vérifier" className="w-20 px-4" />
+                  </button>
                 </div>
-                <button
-                  onClick={handleVerification}
-                  className="mt-10 flex justify-center item-center"
-                >
-                  <img src={imgCheck} alt="Vérifier" className="w-20 px-4" />
-                </button>
               </div>
-            </div>
-              </Draggable>
+            </Draggable>
           </div>
         )}
 
